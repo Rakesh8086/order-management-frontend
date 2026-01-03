@@ -1,2 +1,17 @@
-<h1>Frontend working</h1>
-<router-outlet />
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Online Order App</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active"> 
+    </ul>
+    @if(!isLoggedIn) {
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+      </ul>
+    }
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

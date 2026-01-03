@@ -1,11 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { StorageService } from './services/storage.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  standalone: false,
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
+  standalone: false
 })
-export class App {
-  protected readonly title = signal('order-mgmt');
+export class AppComponent {
+  private roles: string[] = [];
+  isLoggedIn = false;
+  mobileNumber?: string;
+
+  constructor(private storageService: StorageService, private authService: AuthService) { 
+
+  }
 }
