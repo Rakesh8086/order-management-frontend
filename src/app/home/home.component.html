@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Products Available</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{errorMessage}}
+  </div>
+
+  <table *ngIf="products.length > 0" class="product-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Brand</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Final Price</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product.id}}</td>
+        <td><strong>{{product.name}}</strong></td>
+        <td>{{product.brand}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.discount}}</td>
+        <td>{{product.finalPrice}}</td>
+        <td>{{product.currentStock}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

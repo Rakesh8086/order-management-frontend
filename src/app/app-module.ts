@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
 import { httpInterceptorProviders } from './helper/http.interceptor';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home.component/home.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
