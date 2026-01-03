@@ -26,7 +26,17 @@ export class AuthService {
         mobileNumber,
         password,
       },
-      { withCredentials: true }
+      {withCredentials: true}
     );
+  }
+
+  signin(mobileNumber: string, password: string): Observable<any> {
+    return this.http.post(
+      AUTH_API + 'signin', 
+    {
+      mobileNumber,
+      password
+    }, 
+    {withCredentials: true}); 
   }
 }

@@ -5,7 +5,7 @@ import { EventData } from './event.class';
 
 @Injectable({
   providedIn: 'root',
-})+
+})
 export class EventBusService {
   private subject$ = new Subject<EventData>();
 
