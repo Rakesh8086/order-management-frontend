@@ -3,6 +3,8 @@ import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import { EventBusService } from './shared/event-bus.service';
+import { EventData } from './shared/event.class';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ export class AppComponent {
   eventBus?: Subscription;
 
   constructor(private storageService: StorageService, 
-    private eventBusService: EventBusService){
+    private eventBusService: EventBusService,
+    private router: Router,
+    private authService: AuthService){
 
     }
 
@@ -41,8 +45,19 @@ export class AppComponent {
   }
 
   logout(): void {
-    this.storageService.clean();
-    this.isLoggedIn = false;
-    window.location.reload(); // clears all details
+    this.authService.logout().subscribe({
+      next: res => {
+        // console.log(res);
+        this.storageService.clean();
+        this.isLoggedIn = false;
+        this.roles = [];
+        this.eventBusService.emit(new EventData('logout', null));
+        this.router.navigate(['/login']);
+        // window.location.reload();
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 }

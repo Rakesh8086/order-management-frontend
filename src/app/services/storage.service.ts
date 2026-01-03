@@ -11,6 +11,7 @@ export class StorageService {
   }
   clean(): void{
     window.sessionStorage.clear();
+    // backend clears cookies
   }
 
   public saveUser(user: any): void{

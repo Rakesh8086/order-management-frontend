@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { StorageService } from './storage.service';
 
 const AUTH_API = 'https://localhost:8086/authentication-service/api/auth/';
 
@@ -12,7 +13,8 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, 
+    private storageService: StorageService){
 
   }
 
@@ -38,5 +40,13 @@ export class AuthService {
       password
     }, 
     {withCredentials: true}); 
+  }
+
+  logout(): Observable<any> {
+    return this.http.post(
+      AUTH_API + 'signout',
+      {},
+      {withCredentials: true}
+    );
   }
 }
