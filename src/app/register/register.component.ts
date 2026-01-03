@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
@@ -12,9 +12,12 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   isSuccessful = false;
   isSignUpFailed = false;
-  errorMessage = '';
+  serviceError = '';
+  fieldErrors: any = {};
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService,
+    private changeDetector: ChangeDetectorRef
+  ) {
   
   }
   ngOnInit(): void {
@@ -22,7 +25,9 @@ export class RegisterComponent implements OnInit {
       username: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       mobileNumber: [null, [Validators.required, Validators.pattern('^\\d{10}$')]],
-      password: [null, [Validators.required, Validators.minLength(8)]]
+      password: [null, [Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+      ]]
     });
   }
 
@@ -41,10 +46,31 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.changeDetector.detectChanges();
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.isSuccessful = false;
         this.isSignUpFailed = true;
+        this.fieldErrors = {};
+        this.serviceError = '';
+        if(typeof err.error === 'string'){
+          try {
+            const parsed = JSON.parse(err.error);
+            if(typeof parsed === 'object'){
+              this.fieldErrors = parsed;
+            } 
+            else {
+              this.serviceError = err.error;
+            }
+          } 
+          catch {
+            this.serviceError = err.error;
+          }
+        }
+        else if(typeof err.error === 'object'){
+          this.fieldErrors = err.error;
+        }
+        this.changeDetector.detectChanges();
       }
     });
   }
