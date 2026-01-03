@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { EventData } from '../shared/event.class';
 import { EventBusService } from '../shared/event-bus.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login.component',
@@ -22,7 +23,8 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private authService: AuthService,
     private changeDetector: ChangeDetectorRef, 
     private storageService: StorageService,
-    private eventBusService: EventBusService) {
+    private eventBusService: EventBusService,
+    private router: Router) {
     if(this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
@@ -52,6 +54,7 @@ export class LoginComponent {
         this.isLoginFailed = false;
         this.eventBusService.emit(new EventData('login', null));
         this.changeDetector.detectChanges();
+        this.router.navigate(['/home']);
       },
       error: err => {
         this.isLoggedIn = false;

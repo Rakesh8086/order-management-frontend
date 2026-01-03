@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,8 @@ export class AppComponent {
   constructor(private storageService: StorageService, 
     private eventBusService: EventBusService,
     private router: Router,
-    private authService: AuthService){
+    private authService: AuthService,
+    private changeDetector: ChangeDetectorRef){
 
     }
 
@@ -29,9 +30,16 @@ export class AppComponent {
     this.checkLoginStatus();
     this.eventBus = this.eventBusService.on('login', () => {
       this.checkLoginStatus();
+      this.changeDetector.detectChanges();
     });
+    // used when session expires and event bus catches 401
+    // and performs logout automatically
     this.eventBusService.on('logout', () => {
-      this.logout();
+      // this.logout();
+      this.storageService.clean();
+      this.isLoggedIn = false;
+      this.router.navigate(['/login']);
+      this.changeDetector.detectChanges();
     });
   }
 
@@ -43,7 +51,7 @@ export class AppComponent {
       this.mobileNumber = user.mobileNumber;
     }
   }
-
+  // used when user clicks logout manually
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
@@ -51,8 +59,9 @@ export class AppComponent {
         this.storageService.clean();
         this.isLoggedIn = false;
         this.roles = [];
-        this.eventBusService.emit(new EventData('logout', null));
+        // this.eventBusService.emit(new EventData('logout', null));
         this.router.navigate(['/login']);
+        this.changeDetector.detectChanges();
         // window.location.reload();
       },
       error: err => {
