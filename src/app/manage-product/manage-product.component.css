@@ -1,5 +1,5 @@
 .manage-container {
-  max-width: 500px;
+  max-width: 1000px;
   margin: 60px auto;
   padding: 25px;
   background: #fffbfb;
@@ -70,4 +70,102 @@
 .button-no {
   background: #6c757d;
   color: #fff;
+}
+
+.task-selector {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.task-selector select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.task-section {
+  padding: 15px;
+  background: #fdfdfd;
+  border-radius: 8px;
+  border: 1px inset #eee;
+  margin-bottom: 20px;
+}
+
+.task-section h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.navigation-footer {
+  margin-top: 20px;
+}
+
+.update-container {
+  max-width: 750px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.update-container h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  height: 90px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.button-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.save-button {
+  padding: 12px 25px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.save-button:disabled {
+  background: #ccc;
 }

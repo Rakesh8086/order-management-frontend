@@ -11,33 +11,97 @@ import { ProductService } from '../services/product.service';
 })
 export class ManageProductComponent implements OnInit {
   productId!: number;
-  productName: string = '';
-  message: string = '';
-  ConfirmationBox: boolean = false;
+  productName = '';
+  message = '';
+  confirmationBox = false;
+  updateForm!: FormGroup;
+  currentTask: 'none' | 'update' | 'delete' = 'none';
+  initialStock = null;
 
-  constructor(private route: ActivatedRoute,
-    private productService: ProductService,private router: Router){
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
-    }
-
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.updateForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      brand: ['', Validators.required],
+      category: ['', Validators.required],
+      price: [null, [Validators.required, Validators.min(1)]],
+      discount: [null, [Validators.required, Validators.min(0)]],
+      initialStock: [null, [Validators.required, Validators.min(1)]],
+      minStockLevel: [null, [Validators.required, Validators.min(0)]],
+      isActive: [true, Validators.required]
+    });
+    this.loadProductDetails();
   }
-  openConfirmationBox(){ 
-    this.ConfirmationBox = true; 
+
+  selectTask(task: 'none' | 'update' | 'delete') {
+    this.currentTask = task;
+    this.message = '';
   }
-  closeConfirmationBox(){ 
-    this.ConfirmationBox = false; 
+
+  openConfirmationBox(){
+    this.confirmationBox = true;
+  }
+
+  closeConfirmationBox(){
+    this.confirmationBox = false;
+  }
+
+  loadProductDetails(){
+    this.productService.getById(this.productId).subscribe((data: any)=>{
+      let product;
+      if(Array.isArray(data)){
+        product = data[0]; 
+      } 
+      else {
+        product = data;   
+      }
+      this.productName = product.name;
+      this.updateForm.patchValue({
+        name: product.name,
+        description: product.description,
+        brand: product.brand,
+        category: product.category,
+        price: product.price,
+        discount: product.discount,
+        initialStock: product.currentStock,      
+        minStockLevel: product.minStockLevel,
+        isActive: product.isActive
+      });
+    });
   }
 
   deleteProduct(){
-    this.ConfirmationBox = false; 
+    this.confirmationBox = false;
     this.productService.deleteProduct(this.productId).subscribe({
       next:()=>{
-        this.message = "Product deleted successfully";
+        this.message = 'Product deleted successfully';
       },
-      error:err=>{
-        this.message = "Could not delete";
+      error:()=>{
+        this.message = 'Could not delete product';
+      }
+    });
+  }
+
+  updateProduct(){
+    if(this.updateForm.invalid){
+      return;
+    }
+    this.productService.updateProduct(this.productId, this.updateForm.value).subscribe({
+      next:()=>{
+        this.message = 'Product updated successfully';
+        this.loadProductDetails();
+      },
+      error:()=>{
+        this.message = 'Updated';
       }
     });
   }

@@ -64,4 +64,9 @@ export class ProductService {
       withCredentials: true 
     });
   }
+
+  updateProduct(id: number, productData: any): Observable<any> {
+    return this.http.put(`${this.API_URL}/update/${id}`, productData, 
+      {withCredentials: true});
+  }
 }
