@@ -1,0 +1,73 @@
+.manage-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 25px;
+  background: #fffbfb;
+  border-radius: 60px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+}
+
+.manage-container h2 {
+  margin-bottom: 20px;
+}
+
+.status-message {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #e8f5e9;
+  border-radius: 4px;
+}
+
+.danger-section p {
+  margin-bottom: 20px;
+}
+
+.button-delete,
+.button-back {
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.button-delete {
+  background: #dc3545;
+  color: #fff;
+}
+
+.button-back {
+  background: #6c757d;
+  color: #fff;
+}
+
+.confirm-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+.options button {
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.button-yes {
+  background: #dc3545;
+  color: #fff;
+}
+
+.button-no {
+  background: #6c757d;
+  color: #fff;
+}

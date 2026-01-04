@@ -58,4 +58,10 @@ export class ProductService {
     return this.http.post(`${this.API_URL}/add`, productData, 
       {withCredentials: true});
   }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(`${this.API_URL}/delete/${id}`, { 
+      withCredentials: true 
+    });
+  }
 }
