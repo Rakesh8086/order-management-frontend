@@ -2,6 +2,11 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Online Order App</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active"> 
+      @if(isWarehouseManager){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/add-product" routerLinkActive="active">Add Product</a>
+        </li>
+      }
       @if(isLoggedIn){
       <li class="nav-item">
         <a class="nav-link" routerLink="/home">Home</a>

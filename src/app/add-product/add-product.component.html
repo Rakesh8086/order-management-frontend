@@ -1,0 +1,85 @@
+<div class="add-product-container">
+  <h3>Add New Inventory Item</h3>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      
+      <div class="form-group">
+        <label>Product Name</label>
+        <input formControlName="name" placeholder="Enter name">
+        <small class="error-text" *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid">
+          Name is required.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Brand</label>
+        <input formControlName="brand" placeholder="Enter brand">
+        <small class="error-text" *ngIf="productForm.get('brand')?.touched && productForm.get('brand')?.invalid">
+          Brand is required.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" formControlName="price" min="1" (keydown)="preventNegative($event)">
+        <small class="error-text" *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid">
+          Price must be at least 1.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Discount (%)</label>
+        <input type="number" formControlName="discount" min="0" (keydown)="preventNegative($event)">
+        <small class="error-text" *ngIf="productForm.get('discount')?.touched && productForm.get('discount')?.invalid">
+          Discount cannot be negative.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Initial Stock</label>
+        <input type="number" formControlName="initialStock" min="1" (keydown)="preventNegative($event)">
+        <small class="error-text" *ngIf="productForm.get('initialStock')?.touched && productForm.get('initialStock')?.invalid">
+          Must start with at least 1 item.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Min Stock Level</label>
+        <input type="number" formControlName="minStockLevel" min="0" (keydown)="preventNegative($event)">
+        <small class="error-text" *ngIf="productForm.get('minStockLevel')?.touched && productForm.get('minStockLevel')?.invalid">
+          Cannot be negative.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <input formControlName="category" placeholder="e.g. Electronics, Food">
+      </div>
+
+      <div class="form-group">
+        <label>Inventory Status</label>
+        <select formControlName="isActive">
+          <option [ngValue]="true">Active</option>
+          <option [ngValue]="false">Inactive</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Description</label>
+        <textarea formControlName="description"></textarea>
+      </div>
+
+    </div>
+    
+    <div *ngIf="message" [ngClass]="isSuccess?'alert-success':'alert-error'">
+        <div class="alert-content">
+            <span>{{ message }}</span>
+        </div>
+    </div>
+    <div class="button-group">
+        <button type="submit" class="save-button" [disabled]="productForm.invalid">Save Product</button>
+        <button type="button" class="cancel-button" routerLink="/home">Back to Home</button>
+    </div>
+  </form>
+</div>

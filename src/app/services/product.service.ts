@@ -53,4 +53,9 @@ export class ProductService {
     return this.http.post<any[]>(`${this.API_URL}/lowstock`, filterData, 
       {withCredentials: true});
   }
+
+  addProduct(productData: any): Observable<any> {
+    return this.http.post(`${this.API_URL}/add`, productData, 
+      {withCredentials: true});
+  }
 }

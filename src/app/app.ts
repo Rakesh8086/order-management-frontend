@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
+  isWarehouseManager = false;
   mobileNumber?: string;
   eventBus?: Subscription;
 
@@ -48,6 +49,9 @@ export class AppComponent {
     if(this.isLoggedIn){
       const user = this.storageService.getUser();
       this.roles = user.roles;
+      if(this.roles.includes('ROLE_WAREHOUSE_MANAGER')){
+        this.isWarehouseManager = true;
+      }
       this.mobileNumber = user.mobileNumber;
     }
   }
