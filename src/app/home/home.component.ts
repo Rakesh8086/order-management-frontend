@@ -35,6 +35,12 @@ export class HomeComponent implements OnInit{
 
   }
 
+  preventNegative(event: KeyboardEvent): void{
+    if(event.key === '-' || event.key === 'e'){
+      event.preventDefault();
+    }
+  }
+
   private removeNullField(obj: any){
     const cleaned: any = {};
     const keys = Object.keys(obj);
@@ -149,7 +155,13 @@ export class HomeComponent implements OnInit{
     this.productService.getLowStock(body).subscribe({
       next:data=>{
         this.ngZone.run(()=>{
-          this.products = data;
+          if(data.length === 0){
+            this.errorMessage = "No products match your filter criteria.";
+          }
+          else{
+            this.products = data;
+            this.errorMessage = '';
+          }
           this.cd.detectChanges();
         });
       },

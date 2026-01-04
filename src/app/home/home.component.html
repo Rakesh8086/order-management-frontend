@@ -14,7 +14,7 @@
 
   <div class="input-panel">
     <div *ngIf="filterType === 'id'">
-      <input type="number" min="1" [formControl]="id" placeholder="Enter Product ID">
+      <input type="number" min="1" [formControl]="id" placeholder="Enter Product ID" (keydown)="preventNegative($event)">
       <button (click)="searchById()">Find ID</button>
     </div>
 
@@ -26,8 +26,8 @@
     <div *ngIf="filterType === 'advanced'" [formGroup]="advancedForm" class="advanced-grid">
       <input formControlName="name" placeholder="Name">
       <input formControlName="brand" placeholder="Brand">
-      <input type="number" formControlName="finalPrice" placeholder="Max Price">
-      <input type="number" formControlName="discount" placeholder="Min Discount">
+      <input type="number" min="1" formControlName="finalPrice" placeholder="Max Price" (keydown)="preventNegative($event)">
+      <input type="number" min="0" formControlName="discount" placeholder="Min Discount" (keydown)="preventNegative($event)">
       <button (click)="applyAdvancedFilter()">Apply Intersection Filter</button>
     </div>
 
@@ -35,8 +35,8 @@
       <div [formGroup]="advancedForm" class="advanced-grid">
         <input formControlName="name" placeholder="Name">
         <input formControlName="brand" placeholder="Brand">
-        <input type="number" formControlName="finalPrice" placeholder="Max Price">
-        <input type="number" formControlName="discount" placeholder="Min Discount">
+        <input type="number" min="1" formControlName="finalPrice" placeholder="Max Price" (keydown)="preventNegative($event)">
+        <input type="number" min="0" formControlName="discount" placeholder="Min Discount" (keydown)="preventNegative($event)">
         <button (click)="loadLowStock()">Get Low Stock Products</button>
       </div>
     </div>
@@ -61,7 +61,9 @@
         @if(isWarehouseManager && filterType === 'lowstock') {
           <th>Min Stock Level</th>
         }
-        <th *ngIf="isWarehouseManager">Status</th>
+        @if(isWarehouseManager && (filterType === 'lowstock' || filterType === 'id')){
+          <th>Status</th>
+        }
         <th>Place Order</th>
       </tr>
     </thead>
@@ -77,13 +79,11 @@
         <td>{{p.finalPrice}}</td>
         <td>{{p.currentStock}}</td>
         @if(isWarehouseManager && filterType === 'lowstock') {
-          <th>{{p.minStockLevel}}</th>
+          <td>{{p.minStockLevel}}</td>
         }
-        <td *ngIf="isWarehouseManager">
-          <span [style.color]="p.isActive?'green':'red'">
-            {{p.isActive?'Active':'Inactive'}}
-          </span>
-        </td>
+        @if(isWarehouseManager && (filterType === 'lowstock' || filterType === 'id')){
+          <td>{{p.isActive?'Active':'Inactive'}}</td>
+        }
         <td><button>Order</button></td>
       </tr>
     </tbody>
