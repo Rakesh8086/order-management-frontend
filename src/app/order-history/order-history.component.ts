@@ -10,6 +10,8 @@ import { OrderService } from '../services/order.service';
 export class OrderHistoryComponent implements OnInit{
   orders: any[] = [];
   errorMessage = '';
+  selectedOrder: any = null;
+  showDetailsBox: boolean = false;
 
   constructor(private orderService: OrderService,
   private changeDetector: ChangeDetectorRef){
@@ -18,6 +20,14 @@ export class OrderHistoryComponent implements OnInit{
 
   ngOnInit(): void{
     this.orderHistory();
+  }
+  openDetails(order: any){
+    this.selectedOrder = order;
+    this.showDetailsBox = true;
+  }
+  closeDetails(){
+    this.showDetailsBox = false;
+    this.selectedOrder = null;
   }
 
   orderHistory(): void{

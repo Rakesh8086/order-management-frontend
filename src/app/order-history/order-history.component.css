@@ -50,3 +50,21 @@
   border: 2px solid #070000;
   text-align: center;
 }
+
+.confirm-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
