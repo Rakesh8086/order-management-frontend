@@ -16,6 +16,8 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { InvoiceHistoryComponent } from './invoice-history/invoice-history.component';
+import { FinanceDashboardComponent } from './finance-dashboard/finance-dashboard.component';
+import { ProfileComponent } from './profile.component/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { InvoiceHistoryComponent } from './invoice-history/invoice-history.compo
     PlaceOrderComponent,
     OrderHistoryComponent,
     ManageOrderComponent,
-    InvoiceHistoryComponent
+    InvoiceHistoryComponent,
+    FinanceDashboardComponent,
+    ProfileComponent
  ],
   imports: [
     BrowserModule,

@@ -1,0 +1,58 @@
+<div class="home-container">
+  <br>
+  <h2 class="text-center">Finance Report</h2>
+  <br>
+  <div class="report-grid" *ngIf="report">
+    <div class="report-card">
+      <label>Total Revenue</label>
+      <p class="stat">{{report.totalRevenue | number:'1.2-2'}}</p>
+    </div>
+    <div class="report-card">
+      <label>Orders Processed</label>
+      <p class="stat">{{report.totalOrders}}</p>
+    </div>
+    <div class="report-card">
+      <label>Avg. Order Value</label>
+      <p class="stat">{{report.averageOrderValue | number:'1.2-2'}}</p>
+    </div>
+  </div>
+  <p class="text-center timestamp" *ngIf="report">
+    Generated: {{report.reportGeneratedDate}} at {{report.reportGeneratedTime.slice(0, 8)}}
+  </p>
+  <br>
+  <hr class="divider">
+  <br>
+  <div class="input-panel">
+    <h3 class="text-center">Invoice Lookup</h3>
+    <br>
+    <div class="search-box">
+      <input type="number" [formControl]="orderIdInput" placeholder="Enter Order ID">
+      <button (click)="searchInvoice()">Find Invoice</button>
+    </div>
+  </div>
+
+  <div *ngIf="message" [ngClass]="isError ? 'alert-box danger' : 'status-message'">
+    {{message}}
+  </div>
+
+  <table class="product-table" *ngIf="searchedInvoice">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Invoice ID</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>#{{searchedInvoice.orderId}}</strong></td>
+        <td>{{searchedInvoice.id}}</td>
+        <td>{{searchedInvoice.totalAmount}}</td>
+        <td>{{searchedInvoice.invoiceDate}}</td>
+        <td>{{searchedInvoice.invoiceTime.slice(0, 8)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

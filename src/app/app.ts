@@ -16,7 +16,8 @@ export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
   isWarehouseManager = false;
-  mobileNumber?: string;
+  isFinanceOfficer = false;
+  mobileNumber?: string; 
   eventBus?: Subscription;
 
   constructor(private storageService: StorageService, 
@@ -52,6 +53,9 @@ export class AppComponent {
       if(this.roles.includes('ROLE_WAREHOUSE_MANAGER')){
         this.isWarehouseManager = true;
       }
+      if(this.roles.includes('ROLE_FINANCE_OFFICER')){
+        this.isFinanceOfficer = true;
+      }
       this.mobileNumber = user.mobileNumber;
     }
   }
@@ -66,6 +70,8 @@ export class AppComponent {
         // this.eventBusService.emit(new EventData('logout', null));
         this.router.navigate(['/login']);
         this.changeDetector.detectChanges();
+        this.isWarehouseManager = false;
+        this.isFinanceOfficer = false;
         // window.location.reload();
       },
       error: err => {

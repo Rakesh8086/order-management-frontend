@@ -14,7 +14,7 @@
         <th>Total Items</th>
         <th>Total Amount</th>
         <th>Status</th>
-        <th>Details</th>
+        <th>Items</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -30,7 +30,7 @@
           {{o.status}}
         </td>
         <td>
-          <button (click)="openDetails(o)">View Items</button>
+          <button (click)="openDetails(o)">View</button>
         </td>
         <td>
         <button (click)="openCancelBox(o.id)" class="button-cancel-action" [disabled]="!canCancel(o.status)">

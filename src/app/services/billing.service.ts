@@ -16,4 +16,12 @@ export class BillingService {
     return this.http.get<any[]>(`${this.API_URL}/history`, 
         {withCredentials: true});
   }
+  getFinanceReport(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}/report`, 
+        {withCredentials: true});
+  }
+  getInvoiceByOrderId(orderId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}/order/${orderId}`, 
+        {withCredentials: true});
+  }
 }
