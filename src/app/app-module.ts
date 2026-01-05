@@ -14,6 +14,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     AddProductComponent,
     ManageProductComponent,
     PlaceOrderComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    ManageOrderComponent
  ],
   imports: [
     BrowserModule,

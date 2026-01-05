@@ -7,6 +7,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'manage-product/:id', component: ManageProductComponent},
   {path: 'place-order', component: PlaceOrderComponent},
   {path: 'order-history', component:OrderHistoryComponent},
+  {path: 'manage-order', component:ManageOrderComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 

@@ -1,0 +1,75 @@
+<div class="home-container">
+  <h2 class="text-center">Manage Orders</h2>
+
+  <div class="filter-selector">
+    <label>Current Task:</label>
+    <select [formControl]="filterMethod">
+      <option value="view">View All Orders</option>
+      <option value="update">Update Order Status</option>
+    </select>
+  </div>
+
+  <div class="input-panel">
+    <div [formGroup]="filterForm" class="advanced-grid">
+      <input type="number" formControlName="userId" placeholder="User ID">
+      <select formControlName="status">
+        <option value="">All</option>
+        <option value="ORDERED">ORDERED</option>
+        <option value="DELIVERED">DELIVERED</option>
+        <option value="CANCELLED">CANCELLED</option>
+        <option value="FAILED">FAILED</option>
+      </select>
+      <input type="date" formControlName="startDate">
+      <button type="button" (click)="getOrders()">Apply Filters</button>
+      
+      <button *ngIf="mode === 'update'" class="button-delete" type="button"
+        [disabled]="orders.length === 0" (click)="openBulkConfirm()">
+        Update Status
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert-box danger">
+    {{errorMessage}}
+  </div>
+
+  <table class="product-table" *ngIf="orders.length > 0">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>User ID</th>
+        <th>Order Date</th>
+        <th>Delivery Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let o of orders">
+        <td>{{o.id}}</td>
+        <td>{{o.userId}}</td>
+        <td>{{o.orderDate}}</td>
+        <td>{{o.deliveryDate}}</td>
+        <td>{{o.totalAmount}}</td>
+        <td>
+          <span [ngStyle]="{'color': o.status === 'DELIVERED' ? 'green' : 'blue'}">
+            {{o.status}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="confirm-box" *ngIf="showConfirmBulk">
+  <div class="modal-box">
+    <h3>Bulk Status Update</h3>
+    <p>
+      Update's Order Status to DELIVERD if Delivery is made
+    </p>
+    <div class="options">
+      <button class="button-yes" (click)="updateStatus()">Confirm</button>
+      <button class="button-no" (click)="showConfirmBulk = false">Cancel</button>
+    </div>
+  </div>
+</div>

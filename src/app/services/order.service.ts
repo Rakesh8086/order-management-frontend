@@ -23,4 +23,15 @@ export class OrderService {
     return this.http.put<any[]>(`${this.API_URL}/cancel/${id}`, 
     {withCredentials: true});
   }
+
+  getAllOrdersForAdmin(filter: any = {}): Observable<any[]> {
+    return this.http.post<any[]>(`${this.API_URL}/admin/filter`, filter,
+         {withCredentials: true});
+  }
+  UpdateToDelivered(filter: any = {}): Observable<any[]> {
+    return this.http.post(`${this.API_URL}/update/order/status`, filter, {
+        withCredentials: true,
+        responseType: 'text' as 'json'
+    }) as Observable<any[]>;
+  }
 }
