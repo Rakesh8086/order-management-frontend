@@ -1,0 +1,129 @@
+.manage-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 25px;
+  background: #fffbfb;
+  border-radius: 60px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.manage-container h2 {
+  margin-bottom: 20px;
+}
+
+.status-message {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #e8f5e9;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.input-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.input-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.item-entry {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 700px;
+}
+
+textarea,
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 320px;
+}
+
+textarea {
+  height: 90px;
+}
+
+.divider {
+  margin: 25px 0;
+  width: 100%;
+}
+
+.button-update,
+.button-back {
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.button-update {
+  padding: 12px 25px;
+}
+
+.button-back {
+  background: #6c757d;
+  color: #fff;
+}
+
+.confirm-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.options button {
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.button-yes {
+  background: #dc3545;
+  color: #fff;
+}
+
+.button-no {
+  background: #6c757d;
+  color: #fff;
+}

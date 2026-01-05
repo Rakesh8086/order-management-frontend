@@ -64,7 +64,6 @@
         @if(isWarehouseManager && (filterType === 'lowstock' || filterType === 'id')){
           <th>Status</th>
         }
-        <th>Add to Cart</th>
         @if(isWarehouseManager){
           <th>Manage</th>
         }
@@ -87,7 +86,6 @@
         @if(isWarehouseManager && (filterType === 'lowstock' || filterType === 'id')){
           <td>{{p.isActive?'Active':'Inactive'}}</td>
         }
-        <td><button>Add</button></td>
         @if(isWarehouseManager){
           <td><button [routerLink]="['/manage-product', p.id]">Manage</button></td>
         }

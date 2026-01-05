@@ -1,0 +1,69 @@
+<div class="manage-container">
+  <h2>Place Order</h2>
+  <div *ngIf="message" class="status-message">
+    {{message}}
+  </div>
+
+  <div class="input-group">
+    <label>Number of items to order:</label>
+    <select (change)="onItemCountChange($event)">
+      <option *ngFor="let opt of itemOptions" [value]="opt">
+        {{ opt }} Product(s)
+      </option>
+    </select>
+  </div>
+
+  <form
+    [formGroup]="orderForm"
+    (ngSubmit)="orderForm.valid && (ConfirmationBox = true)">
+    <div formArrayName="items">
+      <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-entry">
+        <p><strong>Item {{i + 1}}</strong></p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Product ID</label>
+            <input type="number" formControlName="productId">
+          </div>
+          <div class="input-group">
+            <label>Qty</label>
+            <input type="number" formControlName="quantity">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="input-group">
+      <label>Address</label>
+      <textarea formControlName="address" rows="3"></textarea>
+    </div>
+    <div class="input-group">
+      <label>Delivery within (1–5 days)</label>
+      <input type="number" formControlName="deliveryWithinDays">
+    </div>
+
+    <button type="submit" class="button-update" [disabled]="orderForm.invalid || isSubmitting">
+      Place Order
+    </button>
+
+    <button type="button" class="button-back" routerLink="/home">
+      Cancel
+    </button>
+  </form>
+
+  <div class="confirm-box" *ngIf="ConfirmationBox">
+    <div class="modal-box">
+      <h3>Confirm Order</h3>
+      <p>Are you sure you want to place this order?</p>
+      <div class="options">
+        <button class="button-yes" (click)="confirmPlaceOrder()">
+          Yes, Order
+        </button>
+        <button class="button-no" (click)="ConfirmationBox = false" [disabled]="isSubmitting">
+          Wait
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
