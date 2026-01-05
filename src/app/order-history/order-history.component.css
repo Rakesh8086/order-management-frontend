@@ -68,3 +68,28 @@
   width: 90%;
   max-width: 350px;
 }
+
+.button-cancel-action {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 4px 10px;
+}
+
+.button-cancel-action:disabled {
+  color: #ccc;
+  border-color: #eee;
+  cursor: not-allowed;
+  background: #fafafa;
+} 
+
+.button-yes {
+  background: #dc3545;
+  color: #fff;
+   margin-right: 10px;
+}
+
+.button-no {
+  background: #6c757d;
+  color: #fff;
+}
+

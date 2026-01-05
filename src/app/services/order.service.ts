@@ -19,4 +19,8 @@ export class OrderService {
   getOrderHistory(): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_URL}/history`, { withCredentials: true });
   }
+  cancelOrder(id: number): Observable<any[]> {
+    return this.http.put<any[]>(`${this.API_URL}/cancel/${id}`, 
+    {withCredentials: true});
+  }
 }
