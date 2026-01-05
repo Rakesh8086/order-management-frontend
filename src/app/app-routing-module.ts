@@ -11,6 +11,7 @@ import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { InvoiceHistoryComponent } from './invoice-history/invoice-history.component';
 import { FinanceDashboardComponent } from './finance-dashboard/finance-dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'invoice-history', component:InvoiceHistoryComponent},
   {path: 'finance-dashboard', component:FinanceDashboardComponent},
   {path: 'profile', component:ProfileComponent},
+  {path: 'change-password', component: ChangePasswordComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 const AUTH_API = 'https://localhost:8086/authentication-service/api/auth/';
+const ACCESS_API = 'https://localhost:8086/authentication-service/api/access/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -47,6 +48,21 @@ export class AuthService {
       AUTH_API + 'signout',
       {},
       {withCredentials: true}
+    );
+  }
+
+  changePassword(mobileNumber: string, existingPassword: string, newPassword: string): 
+  Observable<any>{
+    return this.http.put(ACCESS_API + 'change/password',
+      {
+        mobileNumber,
+        existingPassword,
+        newPassword
+      },
+      {
+        // withCredentials: true,
+        responseType: 'text' as 'json'
+      },
     );
   }
 }

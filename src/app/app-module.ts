@@ -18,6 +18,7 @@ import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { InvoiceHistoryComponent } from './invoice-history/invoice-history.component';
 import { FinanceDashboardComponent } from './finance-dashboard/finance-dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
     ManageOrderComponent,
     InvoiceHistoryComponent,
     FinanceDashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangePasswordComponent
  ],
   imports: [
     BrowserModule,
