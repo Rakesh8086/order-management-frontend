@@ -16,4 +16,7 @@ export class OrderService {
     return this.http.post<number>(`${this.API_URL}/order`, orderData, 
     {withCredentials: true});
   }
+  getOrderHistory(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}/history`, { withCredentials: true });
+  }
 }
