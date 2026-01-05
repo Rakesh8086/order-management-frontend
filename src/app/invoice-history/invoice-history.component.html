@@ -1,0 +1,27 @@
+<div class="home-container">
+  <h2 class="text-center">My Invoice History</h2>
+  <div *ngIf="message" class="alert-box danger">
+    {{message}}
+  </div>
+
+  <table class="product-table" *ngIf="invoices.length > 0">
+    <thead>
+      <tr>
+        <th>Invoice ID</th>
+        <th>Order ID</th>
+        <th>Total Amount</th>
+        <th>Invoice Date</th>
+        <th>Invoice Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of invoices">
+        <td><strong>#{{i.id}}</strong></td>
+        <td>{{i.orderId}}</td>
+        <td>{{i.totalAmount}}</td>
+        <td>{{i.invoiceDate}}</td>
+        <td>{{i.invoiceTime.slice(0, 8)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -8,6 +8,7 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
+import { InvoiceHistoryComponent } from './invoice-history/invoice-history.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'place-order', component: PlaceOrderComponent},
   {path: 'order-history', component:OrderHistoryComponent},
   {path: 'manage-order', component:ManageOrderComponent},
+  {path: 'invoice-history', component:InvoiceHistoryComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
