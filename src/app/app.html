@@ -44,7 +44,10 @@
         } 
         @else {
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger btn-sm text-white px-3" (click)="logout()" style="cursor: pointer;">Logout</a>
+            <a class="nav-link" routerLink="/profile">{{mobileNumber}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
           </li>
         }
       </ul>

@@ -17,7 +17,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { InvoiceHistoryComponent } from './invoice-history/invoice-history.component';
 import { FinanceDashboardComponent } from './finance-dashboard/finance-dashboard.component';
-import { ProfileComponent } from './profile.component/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
